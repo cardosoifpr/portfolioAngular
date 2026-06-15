@@ -1,18 +1,59 @@
-<div class="container">
-  <h1>{{ title() }}</h1>
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
 
-  <p class="intro">
-    Bem-vindo ao meu portfólio! Em construção com o Angular.
-  </p>
+    <mat-nav-list class="nav-list">
 
-  <p>
-    Me chamo Rafaela Cardoso. Sou estudante do Curso Técnico em Informática no
-    IFPR Campus Ponta Grossa. Esse projeto faz parte da disciplina de
-    Desenvolvimento Web II ministrada pelo Professor João Henrique Berssante.
-  </p>
+      <a mat-list-item
+         routerLink="/"
+         routerLinkActive="ativo"
+         [routerLinkActiveOptions]="{ exact: true }">
+        <div class="item-menu">
+          <mat-icon>home</mat-icon>
+          <span>Início</span>
+        </div>
+      </a>
 
-  <p>
-    Esse portfólio tem como objetivo utilizar tecnologias modernas como
-    Angular, Node.js e npm para o desenvolvimento de aplicações web.
-  </p>
-</div>
+      <a mat-list-item
+         routerLink="/sobre"
+         routerLinkActive="ativo">
+        <div class="item-menu">
+          <mat-icon>person</mat-icon>
+          <span>Sobre</span>
+        </div>
+      </a>
+
+      <a mat-list-item
+         routerLink="/projetos"
+         routerLinkActive="ativo">
+        <div class="item-menu">
+          <mat-icon>folder</mat-icon>
+          <span>Projetos</span>
+        </div>
+      </a>
+
+      <a mat-list-item
+         routerLink="/contato"
+         routerLinkActive="ativo">
+        <div class="item-menu">
+          <mat-icon>mail</mat-icon>
+          <span>Contato</span>
+        </div>
+      </a>
+
+    </mat-nav-list>
+
+  </mat-drawer>
+
+  <div class="sidenav-content">
+
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <main style="padding: 24px;">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+</mat-drawer-container>
