@@ -269,6 +269,39 @@ Dessa forma, o usuário consegue visualizar facilmente em qual seção da aplica
 
 ---
 
+## ▶️ Executando a API
+
+Para iniciar a API, abra o terminal na raiz do projeto e execute o comando:
+
+```bash
+/usr/bin/php -S 0.0.0.0:8000
+```
+
+Em seguida, vá até a aba **Ports** do GitHub Codespaces e clique no ícone de **mundo** para abrir o servidor no navegador.
+
+Antes de acessar os endpoints, o endereço do servidor será semelhante a:
+
+```text
+https://obscure-halibut-4j4rwrrvwvvqc75vg-8000.app.github.dev
+```
+
+Para visualizar as APIs, adicione os respectivos caminhos ao final da URL:
+
+### API de Projetos
+
+```text
+https://obscure-halibut-4j4rwrrvwvvqc75vg-8000.app.github.dev/api/projetos.php
+```
+
+### API de Tecnologias
+
+```text
+https://obscure-halibut-4j4rwrrvwvvqc75vg-8000.app.github.dev/api/tecnologias.php
+```
+
+> **Observação:** o nome do domínio pode variar de acordo com cada sessão do GitHub Codespaces. Basta utilizar a URL fornecida pelo servidor e acrescentar `/api/projetos.php` ou `/api/tecnologias.php` ao final.
+
+
 ## ▶️ Como Executar o Projeto
 
 ### 1. Clonar o repositório
