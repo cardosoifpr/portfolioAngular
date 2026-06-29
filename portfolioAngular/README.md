@@ -269,6 +269,27 @@ Dessa forma, o usuário consegue visualizar facilmente em qual seção da aplica
 
 ---
 
+## Por que o acesso de dados no service e não no componente?
+
+```text
+O acesso aos dados foi implementado nos services, e não diretamente nos componentes, seguindo as boas práticas do Angular.
+
+Essa abordagem separa as responsabilidades da aplicação: os componentes ficam responsáveis apenas pela interface e pela interação com o usuário, enquanto os services concentram toda a lógica de comunicação com a API.
+```
+## Autoavaliação
+
+**Conceito pretendido:** **A**
+
+**Justificativa (cite o arquivo de cada critério):**
+- **Consumo da API (Projetos):** `projeto.service.ts` (requisição HTTP GET) e `projetos.ts` (consumo dos dados).
+- **Consumo da API (Catálogo):** `tecnologia.service.ts` (requisição HTTP GET) e `catalogo.ts`/`catalogo.html` (exibição das tecnologias utilizando `async` pipe).
+- **Botão "Ver no GitHub":** `projetos.html` utilizando property binding com `[href]="p.link_github"`.
+- **Tratamento de erro:** `projetos.ts` e `catalogo.ts`.
+- **Tratamento de lista vazia ("nenhum item ainda"):** `projetos.html` e `catalogo.html`.
+- **URL centralizada:** `api.ts`, utilizada pelos arquivos `projeto.service.ts` e `tecnologia.service.ts`.
+- **Boas práticas:** toda a comunicação com a API foi implementada nos services, enquanto os componentes ficaram responsáveis apenas pela apresentação dos dados.
+- **Uso do `async` pipe:** `catalogo.html`, consumindo os dados sem utilizar `subscribe()`.
+
 ## ▶️ Executando a API
 
 Para iniciar a API, abra o terminal na raiz do projeto e execute o comando:
