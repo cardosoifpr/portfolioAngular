@@ -1,11 +1,13 @@
 import { Component, Injectable, OnInit, inject } from "@angular/core";
 import { MatCardModule } from '@angular/material/card';
 import { TecnologiaService, Tecnologia } from "../tecnologia.service";
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
     selector: 'app-catalogo',
-    imports: [MatCardModule],
-    templateUrl: './catalogo.html'
+    imports: [MatCardModule, MatIconModule],
+    templateUrl: './catalogo.html',
+    styleUrl: '../app.css',
 })
 
 export class Catalogo implements OnInit {

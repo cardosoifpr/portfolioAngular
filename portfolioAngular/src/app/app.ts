@@ -21,5 +21,14 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
+  
 })
-export class App {}
+
+export class App {
+  menuAberto = true;
+
+  toggleMenu(drawer: any) {
+    drawer.toggle();
+    this.menuAberto = !this.menuAberto;
+  }
+}

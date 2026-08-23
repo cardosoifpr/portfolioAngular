@@ -1,7 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
-import { API_URL } from "./api";
 
 export interface Tecnologia {
     id: number;
@@ -15,9 +14,9 @@ export interface Tecnologia {
 export class TecnologiaService {
 
     private http = inject(HttpClient);
-
+    private url = 'https://animated-chainsaw-pjv6p66wpqr6f7rg7-8000.app.github.dev/api/tecnologias.php';
     listar(): Observable<Tecnologia[]> {
-        return this.http.get<Tecnologia[]>(`${API_URL}/tecnologias.php`);
+        return this.http.get<Tecnologia[]>(this.url);
     }
 
 }

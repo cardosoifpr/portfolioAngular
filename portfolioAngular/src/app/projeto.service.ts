@@ -1,7 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
-import { API_URL } from "./api";
 
 export interface Projeto {
     id: number;
@@ -14,11 +13,11 @@ export interface Projeto {
 
 @Injectable({ providedIn: 'root' })
 export class ProjetoService {
-
     private http = inject(HttpClient);
+    private url = 'https://animated-chainsaw-pjv6p66wpqr6f7rg7-8000.app.github.dev/api/projetos.php';
 
     listar(): Observable<Projeto[]> {
-        return this.http.get<Projeto[]>(`${API_URL}/projetos.php`);
+        return this.http.get<Projeto[]>(this.url);
     }
 
 }

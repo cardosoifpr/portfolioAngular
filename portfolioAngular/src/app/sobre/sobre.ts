@@ -4,6 +4,6 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-sobre',
   imports: [MatCardModule],
   templateUrl: './sobre.html',
-  styleUrl: './sobre.css',
+  styleUrl: '../app.css',
 })
 export class Sobre {}

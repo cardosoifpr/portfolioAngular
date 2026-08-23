@@ -1,83 +1,826 @@
-:host {
-  display: block;
-  min-height: 100vh;
-  padding: 40px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+/* =========================================================
+   CONFIGURAÇÕES GERAIS
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
 }
 
-.container {
-  max-width: 850px;
-  margin: 40px auto;
-  background: white;
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-  text-align: center;
-  color: #5a4fcf;
-  margin-bottom: 25px;
-  font-size: 2.5rem;
-}
-
-p {
-  color: #444;
-  line-height: 1.8;
-  font-size: 1.1rem;
-  text-align: justify;
-  margin-bottom: 18px;
-}
-
-.intro {
-  text-align: center;
-  font-weight: 600;
+body {
+  font-family: "Roboto", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f7f7fb;
   color: #333;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 25px;
-  }
 
-  h1 {
-    font-size: 2rem;
-  }
+/* =========================================================
+   LAYOUT PRINCIPAL
+   ========================================================= */
 
-  p {
-    font-size: 1rem;
-  }
-  .espacador { flex: 1 1 auto; }
+.container {
+  width: 100%;
+  height: 100vh;
+  background: #f7f7fb;
 }
 
+.sidenav-content {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow-y: auto;
+}
+
+.sidenav-content main {
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+}
+
+
+/* =========================================================
+   MENU LATERAL
+   ========================================================= */
+
+.sidenav {
+  width: 260px;
+  height: 100vh;
+
+  padding: 25px 15px;
+
+  background: #ffffff;
+
+  border: none !important;
+
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   CABEÇALHO DO MENU
+   ========================================================= */
+
+.menu-header {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 5px 10px 30px;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background: linear-gradient(
+    135deg,
+    #667eea,
+    #764ba2
+  );
+
+  color: #ffffff;
+
+  font-size: 21px;
+  font-weight: 700;
+
+  box-shadow:
+    0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.titulo-menu {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.titulo-menu strong {
+  color: #222222;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.titulo-menu span {
+  color: #999999;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+
 .nav-list {
-  padding: 20px;
+  padding: 0 !important;
+}
+
+.nav-list a {
+  height: 50px;
+
+  margin: 7px 0;
+
+  border-radius: 12px;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .item-menu {
   display: flex;
   align-items: center;
-  gap: 12px; /* espaço entre ícone e texto */
+
   width: 100%;
+
+  gap: 14px;
+
+  padding: 0 12px;
+
+  color: #555555;
 }
 
 .item-menu mat-icon {
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
+
+  font-size: 21px;
+
+  color: #777777;
+
+  transition: color 0.2s ease;
 }
 
 .item-menu span {
-  font-size: 18px;
+  font-size: 15px;
+  font-weight: 500;
 }
 
-a[mat-list-item] {
-  height: 50px;
-  border-radius: 25px;
-  margin-bottom: 10px;
+
+/* =========================================================
+   HOVER DO MENU
+   ========================================================= */
+
+.nav-list a:hover {
+  background: #f3f1ff;
 }
 
-.ativo {
-  background-color: #e6e6e6;
+.nav-list a:hover .item-menu {
+  color: #5a4fcf;
+}
+
+.nav-list a:hover .item-menu mat-icon {
+  color: #5a4fcf;
+}
+
+
+/* =========================================================
+   ITEM ATIVO
+   ========================================================= */
+
+.nav-list a.ativo {
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.18),
+    rgba(118, 75, 162, 0.13)
+  );
+}
+
+.nav-list a.ativo .item-menu {
+  color: #5a4fcf;
+}
+
+.nav-list a.ativo .item-menu mat-icon {
+  color: #5a4fcf;
+}
+
+
+/* =========================================================
+   RODAPÉ DO MENU
+   ========================================================= */
+
+.menu-footer {
+  position: absolute;
+
+  left: 25px;
+  bottom: 20px;
+
+  color: #aaaaaa;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   BOTÃO DO MENU
+   ========================================================= */
+
+.menu-button {
+  position: fixed;
+
+  top: 20px;
+  left: 280px;
+
+  z-index: 2000;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  background: #ffffff;
+
+  color: #444444;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.10);
+
+  transition:
+    left 0.3s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* MENU FECHADO */
+
+.menu-button.menu-fechado {
+  left: 20px;
+}
+
+
+/* HOVER */
+
+.menu-button:hover {
+  background: #f0edff;
+
+  color: #5a4fcf;
+
+  box-shadow:
+    0 6px 18px rgba(102, 126, 234, 0.20);
+}
+
+
+/* =========================================================
+   PÁGINAS
+   ========================================================= */
+
+.pagina {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  padding: 100px 40px 50px;
+}
+
+
+/* =========================================================
+   CABEÇALHO DAS PÁGINAS
+   ========================================================= */
+
+.cabecalho {
+  margin-bottom: 30px;
+}
+
+.cabecalho h1 {
+  margin: 0;
+
+  color: #5a4fcf;
+
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.cabecalho p {
+  margin: 10px 0 0;
+
+  color: #666666;
+
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+mat-card {
+  border-radius: 18px !important;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.10) !important;
+}
+
+mat-card-title {
+  color: #5a4fcf !important;
+
+  font-size: 25px !important;
+  font-weight: 600 !important;
+}
+
+mat-card-subtitle {
+  margin-top: 7px !important;
+
+  color: #777777 !important;
+}
+
+mat-card-content {
+  margin-top: 20px;
+}
+
+
+/* =========================================================
+   INÍCIO
+   ========================================================= */
+
+.card-principal {
+  padding: 10px;
+}
+
+.card-principal mat-card-content p {
+  margin: 0;
+
+  color: #444444;
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   SOBRE
+   ========================================================= */
+
+.card-sobre {
+  padding: 10px;
+}
+
+.card-sobre mat-card-content p {
+  margin-bottom: 18px;
+
+  color: #444444;
+
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.card-sobre mat-card-content p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   PROJETOS
+   ========================================================= */
+
+.lista-projetos {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.projeto-card {
+  padding: 8px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.projeto-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+.projeto-card mat-card-title {
+  font-size: 20px !important;
+}
+
+.projeto-card mat-card-content p {
+  color: #444444;
+
+  line-height: 1.6;
+}
+
+.github-button {
+  color: #5a4fcf !important;
+}
+
+.github-button mat-icon {
+  margin-right: 5px;
+}
+
+
+/* =========================================================
+   CATÁLOGO
+   ========================================================= */
+
+.lista-tecnologias {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 18px;
+}
+
+.tecnologia-card {
+  padding: 8px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.tecnologia-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+.tecnologia-card mat-card-title {
+  font-size: 19px !important;
+}
+
+.tecnologia-card p {
+  color: #555555;
+
+  line-height: 1.6;
+}
+
+.icone-tecnologia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    135deg,
+    #667eea,
+    #764ba2
+  );
+
+  color: #ffffff;
+}
+
+.icone-tecnologia mat-icon {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   CONTATO
+   ========================================================= */
+
+.contato-pagina {
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  padding: 100px 30px 50px;
+}
+
+
+/* CABEÇALHO */
+
+.contato-cabecalho {
+  margin-bottom: 28px;
+
+  text-align: center;
+}
+
+.contato-cabecalho h1 {
+  margin: 0;
+
+  color: #5a4fcf;
+
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.contato-cabecalho p {
+  margin: 10px 0 0;
+
+  color: #666666;
+
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+
+/* CARD DE CONTATO */
+
+.contato-card {
+  width: 100%;
+
+  padding: 10px 12px 15px;
+
+  border-radius: 20px !important;
+}
+
+.contato-card mat-card-header {
+  padding: 12px 18px 5px;
+}
+
+.contato-card mat-card-title {
+  color: #5a4fcf !important;
+
+  font-size: 23px !important;
+  font-weight: 600 !important;
+}
+
+.contato-card mat-card-subtitle {
+  margin-top: 5px !important;
+
+  color: #777777 !important;
+
+  font-size: 14px;
+}
+
+.contato-card mat-card-content {
+  padding: 18px;
+}
+
+
+/* FORMULÁRIO */
+
+.contato-card form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.campo label {
+  color: #333333;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid #dedee5;
+  border-radius: 10px;
+
+  background: #f8f8fb;
+
+  color: #333333;
+
+  font-family: inherit;
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.campo-invalido {
+  border: 2px solid rgb(60, 2, 107) !important;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: #999999;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  border-color: #667eea;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(102, 126, 234, 0.12);
+}
+
+.campo textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+
+/* BOTÃO DO FORMULÁRIO */
+
+.contato-card form button {
+  align-self: center;
+
+  min-width: 170px;
+
+  padding: 11px 25px !important;
+
+  border-radius: 25px !important;
+
+  background: linear-gradient(
+    135deg,
+    #667eea,
+    #764ba2
+  ) !important;
+
+  color: #ffffff !important;
+
+  font-size: 15px !important;
+  font-weight: 600 !important;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.contato-card form button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 18px rgba(102, 126, 234, 0.30);
+}
+
+.contato-card form button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   MENSAGENS DO CONTATO
+   ========================================================= */
+
+.contato-card .ok,
+.contato-card .erro {
+  margin: 18px 0 0;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  text-align: center;
+}
+
+.contato-card .ok {
+  background: #e8f5e9;
+
+  color: #2e7d32;
+}
+
+.contato-card .erro {
+  background: #ffebee;
+
+  color: #c62828;
+}
+
+
+
+
+/* =========================================================
+   MENSAGENS GERAIS
+   ========================================================= */
+
+.estado {
+  margin-bottom: 20px;
+
+  padding: 5px;
+
+  border-radius: 14px !important;
+}
+
+.estado.erro {
+  color: #c62828;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .pagina {
+    padding: 95px 25px 40px;
+  }
+
+  .lista-tecnologias {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .sidenav {
+    width: 230px;
+  }
+
+  .menu-button {
+    left: 250px;
+  }
+
+  .menu-button.menu-fechado {
+    left: 15px;
+  }
+
+  .pagina {
+    padding: 90px 20px 35px;
+  }
+
+  .contato-pagina {
+    padding: 90px 20px 35px;
+  }
+
+  .cabecalho h1,
+  .contato-cabecalho h1 {
+    font-size: 28px;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  .sidenav {
+    width: 220px;
+  }
+
+  .menu-button {
+    left: 240px;
+  }
+
+  .menu-button.menu-fechado {
+    left: 15px;
+  }
+
+  .pagina {
+    padding: 85px 15px 30px;
+  }
+
+  .contato-pagina {
+    padding: 85px 15px 30px;
+  }
+
+  .contato-card {
+    padding: 5px;
+  }
+
+  .contato-card mat-card-header {
+    padding-left: 12px;
+  }
+
+  .contato-card mat-card-content {
+    padding: 12px;
+  }
+
+  mat-card-title {
+    font-size: 22px !important;
+  }
+
+  .campo input,
+  .campo textarea {
+    font-size: 16px;
+  }
 }

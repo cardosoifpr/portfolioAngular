@@ -290,6 +290,15 @@ Essa abordagem separa as responsabilidades da aplicação: os componentes ficam 
 - **Boas práticas:** toda a comunicação com a API foi implementada nos services, enquanto os componentes ficaram responsáveis apenas pela apresentação dos dados.
 - **Uso do `async` pipe:** `catalogo.html`, consumindo os dados sem utilizar `subscribe()`.
 
+## 🎯 Autoavaliação
+
+**Conceito pretendido:** **A**
+**Justificativa (cite o arquivo/linha de cada criterio):**
+- **Form reativo + erro por campo: contato.html (mensagens com touched) + contato.ts (Validators): As mensagens que analisam erro por campo estão na linha 34 (nome), 50 (email) e 66 (mensagem) e usam form.validate e touched como parâmetro. Os validators estão no contato.ts da linha 21 a 25
+- **POST via service + tratamento: contato.service.ts (http.post) + contato.ts (subscribe next/error): http.post está na linha 17 do contato.service.ts. O return envia os dados do formulário para o PHP via POST e retorna a resposta para o componente tratar com subscribe(). Na linha 44 e 45 eu usei o subscribe e o next. A lógica indica que o subscribe acompanha a resposta da requisição, e next executa quando o envio dá certo, mostrando a mensagem, limpando o formulário e encerrando o estado de envio.**   
+- **Endpoint PHP (php://input, validacao, prepared, 201/400): api/contato.php: endpoint está na linha 15 do contato.php, prepared: 35, validação: 21 a 25, 201: 38 401: 28 **
+- **Estados/robustez/UX (DUA): contato.html (labels for/id, sem cor unica) + contato.ts (estado enviando): Estados/robustez/UX (DUA): 28, 44 e 60. Estado enviando: linha 50 do contato.ts
+
 ## ▶️ Executando a API
 
 Para iniciar a API, abra o terminal na raiz do projeto e execute o comando:

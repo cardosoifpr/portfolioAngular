@@ -2,12 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { ProjetoService, Projeto } from '../projeto.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-projetos',
-  imports: [MatCardModule, MatButtonModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule],
   templateUrl: './projetos.html',
-  styleUrl: './projetos.css',
+  styleUrl: '../app.css',
 })
 export class Projetos implements OnInit {
   private service = inject(ProjetoService);

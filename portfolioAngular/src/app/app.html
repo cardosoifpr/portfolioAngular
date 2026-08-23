@@ -1,48 +1,82 @@
-<mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
+<mat-drawer-container class="container">
+
+  <mat-drawer
+    #drawer
+    class="sidenav"
+    mode="side"
+    [opened]="menuAberto"
+  >
+
+    <div class="menu-header">
+
+      <div class="logo">
+        P
+      </div>
+
+      <div class="titulo-menu">
+        <strong>Portfólio</strong>
+        <span>Meu Portfólio</span>
+      </div>
+
+    </div>
+
 
     <mat-nav-list class="nav-list">
 
-      <a mat-list-item
-         routerLink="/"
-         routerLinkActive="ativo"
-         [routerLinkActiveOptions]="{ exact: true }">
+      <a
+        mat-list-item
+        routerLink="/"
+        routerLinkActive="ativo"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <div class="item-menu">
           <mat-icon>home</mat-icon>
           <span>Início</span>
         </div>
       </a>
 
-      <a mat-list-item
-         routerLink="/sobre"
-         routerLinkActive="ativo">
+
+      <a
+        mat-list-item
+        routerLink="/sobre"
+        routerLinkActive="ativo"
+      >
         <div class="item-menu">
           <mat-icon>person</mat-icon>
           <span>Sobre</span>
         </div>
       </a>
 
-      <a mat-list-item
-         routerLink="/projetos"
-         routerLinkActive="ativo">
+
+      <a
+        mat-list-item
+        routerLink="/projetos"
+        routerLinkActive="ativo"
+      >
         <div class="item-menu">
           <mat-icon>folder</mat-icon>
           <span>Projetos</span>
         </div>
       </a>
 
-      <a mat-list-item
-         routerLink="/catalogo"
-         routerLinkActive="ativo">
+
+      <a
+        mat-list-item
+        routerLink="/catalogo"
+        routerLinkActive="ativo"
+      >
         <div class="item-menu">
           <mat-icon>computer</mat-icon>
-          <span>Catalogo</span>
+          <span>Catálogo</span>
         </div>
       </a>
 
-      <a mat-list-item
-         routerLink="/contato"
-         routerLinkActive="ativo">
+
+      <a
+        mat-list-item
+        routerLink="/contato"
+        routerLinkActive="ativo"
+      >
         <div class="item-menu">
           <mat-icon>mail</mat-icon>
           <span>Contato</span>
@@ -51,15 +85,28 @@
 
     </mat-nav-list>
 
+
+    <div class="menu-footer">
+      © 2026 · Portfólio de Rafaela Cardoso
+    </div>
+
   </mat-drawer>
+
 
   <div class="sidenav-content">
 
-    <button mat-icon-button (click)="drawer.toggle()">
+    <button
+      mat-icon-button
+      class="menu-button"
+      [class.menu-fechado]="!menuAberto"
+      (click)="toggleMenu(drawer)"
+      aria-label="Abrir ou fechar menu"
+    >
       <mat-icon>menu</mat-icon>
     </button>
 
-    <main style="padding: 24px;">
+
+    <main>
       <router-outlet></router-outlet>
     </main>
 

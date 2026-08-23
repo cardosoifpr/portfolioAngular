@@ -5,6 +5,6 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-home',
   imports: [MatCardModule],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrl: '../app.css',
 })
 export class Home {}

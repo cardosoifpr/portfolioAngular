@@ -1,9 +1,93 @@
-<mat-card>
+<div class="contato-pagina">
+
+  <div class="contato-cabecalho">
+    <h1>Fale comigo</h1>
+    <p>
+      Preencha o formulário abaixo para entrar em contato comigo.
+    </p>
+  </div>
+
+  <mat-card class="contato-card"> 
+
     <mat-card-header>
-        <mat-card-title> Informações de Contato </mat-card-title>
-        <mat-card-subtitle>Entre em contato</mat-card-subtitle>
+      <mat-card-title>Entre em contato</mat-card-title>
+      <mat-card-subtitle>
+        Envie sua mensagem!
+      </mat-card-subtitle>
     </mat-card-header>
+
     <mat-card-content>
-        <p>Posteriormente haverá mais informações</p>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="campo">
+          <label for="nome">Nome</label>
+
+          <input
+            id="nome"
+            [class.campo-invalido] = "form.get('nome')?.invalid &&
+            form.get('nome')?.touched"
+            type="text"
+            formControlName="nome"
+            placeholder="Digite seu nome"
+          >
+          @if (form.get('nome')?.invalid && form.get('nome')?.touched){
+            <p>Informe um nome (mín. 3 letras).</p>
+          }
+        </div>
+
+        <div class="campo">
+          <label for="email">E-mail</label>
+
+          <input
+            id="email"
+            [class.campo-invalido] = "form.get('email')?.invalid &&
+            form.get('email')?.touched"
+            type="email"
+            formControlName="email"
+            placeholder="Digite seu e-mail"
+          >
+          @if (form.get('email')?.invalid && form.get('email')?.touched){  
+            <p>Email inválido</p>  
+          }
+        </div>
+
+        <div class="campo">
+          <label for="mensagem">Mensagem</label>
+
+          <textarea
+            id="mensagem"
+            [class.campo-invalido] = "form.get('mensagem')?.invalid &&
+            form.get('mensagem')?.touched"
+            formControlName="mensagem"
+            rows="5"
+            placeholder="Digite sua mensagem"
+          ></textarea>
+          @if (form.get('mensagem')?.invalid && form.get('mensagem')?.touched){
+            <p>Mensagem muito curta (mín. 10)</p>  
+          }
+        </div>
+
+        <button
+          mat-raised-button
+          type="submit"
+          [disabled]="enviando || form.invalid"
+        >
+          {{ enviando ? 'Enviando...' : 'Enviar mensagem' }}
+        </button>
+
+      </form>
+
+      @if (sucesso) {
+        <p class="ok">{{ sucesso }}</p>
+      }
+
+      @if (erro) {
+        <p class="erro">{{ erro }}</p>
+      }
+
     </mat-card-content>
-</mat-card>
+
+  </mat-card>
+
+</div>
