@@ -296,8 +296,115 @@ Essa abordagem separa as responsabilidades da aplicação: os componentes ficam 
 **Justificativa (cite o arquivo/linha de cada criterio):**
 - **Form reativo + erro por campo: contato.html (mensagens com touched) + contato.ts (Validators): As mensagens que analisam erro por campo estão na linha 34 (nome), 50 (email) e 66 (mensagem) e usam form.validate e touched como parâmetro. Os validators estão no contato.ts da linha 21 a 25
 - **POST via service + tratamento: contato.service.ts (http.post) + contato.ts (subscribe next/error): http.post está na linha 17 do contato.service.ts. O return envia os dados do formulário para o PHP via POST e retorna a resposta para o componente tratar com subscribe(). Na linha 44 e 45 eu usei o subscribe e o next. A lógica indica que o subscribe acompanha a resposta da requisição, e next executa quando o envio dá certo, mostrando a mensagem, limpando o formulário e encerrando o estado de envio.**   
-- **Endpoint PHP (php://input, validacao, prepared, 201/400): api/contato.php: endpoint está na linha 15 do contato.php, prepared: 35, validação: 21 a 25, 201: 38 401: 28 **
-- **Estados/robustez/UX (DUA): contato.html (labels for/id, sem cor unica) + contato.ts (estado enviando): Estados/robustez/UX (DUA): 28, 44 e 60. Estado enviando: linha 50 do contato.ts
+- **Endpoint PHP (php://input, validacao, prepared, 201/400): api/contato.php: endpoint está na linha 15 do contato.php, prepared: 35, validação: 21 a 25, 201: 38 401: 28**
+- **Estados/robustez/UX (DUA): contato.html (labels for/id, sem cor unica) + contato.ts (estado enviando): Estados/robustez/UX (DUA): 28, 44 e 60. Estado enviando: linha 50 do contato.ts**
+
+## 🎯 Autoavaliação
+
+**Conceito pretendido: A — Plena**
+
+Considero que alcancei o conceito **A**, pois implementei o CRUD completo da API, desenvolvi a área de gestão no Angular, tratei os principais erros e realizei testes das requisições. Também compreendi como frontend, service, API e banco de dados se relacionam.
+
+### R1 — API e CRUD
+
+Implementei as quatro operações do CRUD no arquivo `api/projetos.php`.
+
+- **GET:** consulta e lista os projetos.
+- **POST:** cria novos projetos e retorna `201 Created`.
+- **PUT:** altera projetos existentes e retorna `200 OK`.
+- **DELETE:** exclui projetos e retorna `204 No Content`.
+
+A API identifica a operação através de `$_SERVER['REQUEST_METHOD']`, permitindo que o mesmo endereço execute ações diferentes de acordo com o verbo HTTP.
+
+Também utilizei `prepare()` e `execute()` nas operações de escrita, evitando colocar diretamente os dados do usuário dentro das consultas SQL e ajudando a prevenir SQL Injection.
+
+Além disso, implementei os tratamentos de `400`, `404` e `405` e testei as respostas utilizando `curl`.
+
+**Arquivo:** `api/projetos.php`
+
+### R2 — Tela de Gestão
+
+Criei a rota `/gestao` para administrar os projetos do portfólio.
+
+A tela permite:
+
+- adicionar projetos;
+- editar projetos;
+- excluir projetos;
+- validar os campos do formulário;
+- confirmar antes de excluir;
+- visualizar os projetos cadastrados;
+- utilizar o `ProjetoService` para realizar as requisições.
+
+O componente não realiza chamadas HTTP diretamente. A comunicação com a API fica concentrada no service, mantendo uma separação entre a interface e o backend.
+
+**Arquivos principais:**
+
+- `portfolio-angular/src/app/gestao/gestao.ts`
+- `portfolio-angular/src/app/gestao/gestao.html`
+- `portfolio-angular/src/app/gestao/gestao.css`
+- `portfolio-angular/src/app/projeto.service.ts`
+- `portfolio-angular/src/app/app.routes.ts`
+
+### R3 — Atualização sem F5
+
+Implementei a atualização da lista sem precisar recarregar manualmente a página.
+
+Depois de criar ou editar um projeto, a lista é atualizada e o formulário retorna ao modo de adicionar projeto. Na exclusão, o projeto é removido imediatamente do array local utilizando `filter()`.
+
+Entendi que existem duas estratégias possíveis: buscar novamente os dados na API ou modificar o array local. A atualização local evita uma nova requisição, mas pode ficar desatualizada caso outra pessoa ou processo altere o banco.
+
+### R4 — Justificativa e testes
+
+Realizei testes utilizando `curl` e a aba **Network** do DevTools para verificar os métodos, status e respostas da API.
+
+Os principais resultados foram:
+
+- `POST` → `201 Created`, porque um novo recurso foi criado.
+- `PUT` → `200 OK`, porque um recurso existente foi alterado.
+- `DELETE` → `204 No Content`, porque a exclusão foi concluída sem necessidade de retornar conteúdo.
+- `400 Bad Request` → quando os dados enviados são inválidos.
+- `404 Not Found` → quando o projeto informado não existe.
+- `405 Method Not Allowed` → quando o método HTTP não é permitido.
+
+Também compreendi o funcionamento do `OPTIONS` e do pré-voo CORS. O navegador pode verificar primeiro se o servidor permite determinada operação, como um `DELETE`, antes de enviar a requisição principal.
+
+### R5 — Acabamento e entrega
+
+Também considerei os aspectos de acabamento da aplicação, principalmente responsividade, acessibilidade e estados da interface.
+
+Utilizei `label` associado aos campos do formulário, mensagens de erro em texto e procurei manter a navegação adequada pelo teclado. Também verifiquei os estados de carregamento, lista vazia e erro para evitar que a interface simplesmente fique em branco.
+
+O projeto foi salvo no Git e enviado para o repositório com `git push`.
+
+### Conceitos que consolidei
+
+Durante a atividade, consegui consolidar os seguintes conceitos:
+
+- CRUD;
+- API REST;
+- métodos HTTP;
+- códigos de status HTTP;
+- JSON;
+- CORS e `OPTIONS`;
+- PHP e PDO;
+- SQL parametrizado;
+- `prepare()` e `execute()`;
+- prevenção de SQL Injection;
+- Angular Services;
+- `HttpClient`;
+- `Observable`;
+- TypeScript;
+- formulários reativos;
+- `FormGroup`;
+- `patchValue()`;
+- `subscribe()`;
+- rotas do Angular;
+- atualização de estado;
+- validação de formulários;
+- DevTools e Network;
+- `curl`;
+- Git e GitHub.
 
 ## ▶️ Executando a API
 
