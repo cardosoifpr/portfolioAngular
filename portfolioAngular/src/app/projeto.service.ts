@@ -9,15 +9,39 @@ export interface Projeto {
     tecnologias: string;
     link_github: string;
     ano: number;
+    status: 'rascunho' | 'publicado' | 'arquivado';
 }
 
 @Injectable({ providedIn: 'root' })
 export class ProjetoService {
     private http = inject(HttpClient);
+
     private url = 'https://animated-chainsaw-pjv6p66wpqr6f7rg7-8000.app.github.dev/api/projetos.php';
 
     listar(): Observable<Projeto[]> {
-        return this.http.get<Projeto[]>(this.url);
+        return this.http.get<Projeto[]>(`${this.url}?todos=1`);
     }
 
+    criar(projeto: Projeto): Observable<{ id?: number; mensagem?: string }> {
+        return this.http.post<{ id?: number; mensagem?: string }>(
+            this.url,
+            projeto
+        );
+    }
+
+    atualizar(
+        id: number,
+        projeto: Projeto
+    ): Observable<{ id?: number; mensagem?: string }> {
+        return this.http.put<{ id?: number; mensagem?: string }>(
+            `${this.url}?id=${id}`,
+            projeto
+        );
+    }
+
+    excluir(id: number): Observable<void> {
+        return this.http.delete<void>(
+            `${this.url}?id=${id}`
+        );
+    }
 }

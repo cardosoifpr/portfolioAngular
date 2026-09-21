@@ -1,0 +1,166 @@
+<section class="pagina">
+
+  <div class="cabecalho">
+    <h1>Área de Gestão</h1>
+    <p>Cadastre, edite e gerencie seus projetos.</p>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="salvar()">
+
+
+<h3>
+  {{ editandoId ? 'Editar projeto' : 'Adicionar projeto' }}
+</h3>
+
+<div class="campo">
+  <label for="nome">Nome do projeto</label>
+
+  <input
+    id="nome"
+    type="text"
+    formControlName="nome"
+  >
+
+  @if (form.controls.nome.touched && form.controls.nome.invalid) {
+    <p class="erro-campo">
+      Informe o nome do projeto (mínimo 3 caracteres).
+    </p>
+  }
+</div>
+
+<div class="campo">
+  <label for="descricao">Descrição</label>
+
+  <textarea
+    id="descricao"
+    formControlName="descricao"
+    rows="3"
+  ></textarea>
+</div>
+
+<div class="campo">
+  <label for="tecnologias">Tecnologias</label>
+
+  <input
+    id="tecnologias"
+    type="text"
+    formControlName="tecnologias"
+  >
+</div>
+
+<div class="campo">
+  <label for="link_github">Link do GitHub</label>
+
+  <input
+    id="link_github"
+    type="url"
+    formControlName="link_github"
+  >
+</div>
+
+<div class="campo">
+  <label for="ano">Ano</label>
+
+  <input
+    id="ano"
+    type="number"
+    formControlName="ano"
+  >
+
+  @if (form.controls.ano.touched && form.controls.ano.invalid) {
+    <p class="erro-campo">
+      Informe o ano do projeto.
+    </p>
+  }
+</div>
+
+
+<div class="campo-status">
+  <label for="status">Status</label>
+
+  <select
+    id="status"
+    formControlName="status"
+  >
+    <option value="rascunho">Rascunho</option>
+    <option value="publicado">Publicado</option>
+  </select>
+</div>
+
+@if (erro) {
+  <p class="erro-campo">
+    {{ erro }}
+  </p>
+}
+
+<button
+  type="submit"
+  class="botao-editar"
+  [disabled]="salvando"
+>
+  {{ salvando
+    ? 'Salvando...'
+    : (editandoId ? 'Salvar alterações' : 'Adicionar projeto') }}
+</button>
+
+
+  </form>
+
+  <h3>Projetos cadastrados</h3>
+
+@if (carregando) { <p>Carregando projetos...</p>
+}
+
+@if (!carregando && projetos.length === 0) { <p>Você ainda não cadastrou nenhum projeto.</p>
+}
+
+@for (p of projetos; track p.id) {
+
+
+<div class="linha-projeto">
+
+  <span>
+    <strong>{{ p.nome }}</strong>
+    ({{ p.ano }})
+
+    @if (p.status === 'rascunho') {
+      <span class="status status-rascunho">
+        Rascunho
+      </span>
+    }
+
+    @if (p.status === 'publicado') {
+      <span class="status status-publicado">
+        Publicado
+      </span>
+    }
+
+    @if (p.status === 'arquivado') {
+      <span class="status status-arquivado">
+        Arquivado
+      </span>
+    }
+  </span>
+
+  <button
+  class="botao-editar"
+  type="button"
+  (click)="editar(p)"
+>
+  Editar
+</button>
+
+<button
+  class="botao-excluir"
+  type="button"
+  (click)="excluir(p)"
+>
+  Excluir
+</button>
+
+</div>
+
+
+}
+
+</section>

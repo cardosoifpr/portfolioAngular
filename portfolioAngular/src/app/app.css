@@ -824,3 +824,122 @@ mat-card-content {
     font-size: 16px;
   }
 }
+
+ /* =========================================================
+    GESTÃO DE PROJETOS
+    ========================================================= */
+
+.linha-projeto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin-bottom: 12px;
+  padding: 15px;
+
+  background: #ffffff;
+  border-radius: 10px;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.status {
+  display: inline-block;
+
+  margin-left: 8px;
+  padding: 4px 8px;
+
+  border-radius: 5px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Rascunho */
+.status-rascunho {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* Publicado */
+.status-publicado {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* Arquivado */
+.status-arquivado {
+  background: #e2e3e5;
+  color: #383d41;
+}
+.linha-projeto button {
+  border: none;
+  border-radius: 7px;
+
+  padding: 7px 14px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.botao-editar {
+  background: #eeeaff;
+  color: #5a4fcf;
+}
+
+.botao-editar:hover {
+  background: #ddd7ff;
+  transform: translateY(-1px);
+}
+
+.botao-excluir {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.botao-excluir:hover {
+  background: #ffcdd2;
+  transform: translateY(-1px);
+}
+.botoes-projeto {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.campo-status {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.campo-status label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.campo-status select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 15px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.campo-status select:focus {
+  border-color: #3f51b5;
+}
+
+.campo-status select:hover {
+  border-color: #888;
+}
