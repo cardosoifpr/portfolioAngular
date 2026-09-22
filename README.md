@@ -269,6 +269,18 @@ Dessa forma, o usuário consegue visualizar facilmente em qual seção da aplica
 
 ---
 
+## API em Node (Aula 21)
+
+Uma segunda versao da API, em JavaScript, na pasta `api-node/`. O contrato de `GET/api/projetos` e o mesmo do `api/projetos.php`.
+
+Como rodar:
+    cd api-node
+    npm install
+    node server.js
+
+A API sobe em http://localhost:3000. Teste com:
+    curl -i http://localhost:3000/api/projetos
+
 ## Por que o acesso de dados no service e não no componente?
 
 ```text

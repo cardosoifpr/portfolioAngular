@@ -16,7 +16,7 @@ export interface Projeto {
 export class ProjetoService {
     private http = inject(HttpClient);
 
-    private url = 'https://animated-chainsaw-pjv6p66wpqr6f7rg7-8000.app.github.dev/api/projetos.php';
+    private url = 'https://animated-chainsaw-pjv6p66wpqr6f7rg7-3000.app.github.dev/api/projetos';
 
     listar(): Observable<Projeto[]> {
         return this.http.get<Projeto[]>(`${this.url}?todos=1`);
