@@ -14,7 +14,7 @@ export interface Tecnologia {
 export class TecnologiaService {
 
     private http = inject(HttpClient);
-    private url = 'https://animated-chainsaw-pjv6p66wpqr6f7rg7-8000.app.github.dev/api/tecnologias.php';
+    private url = 'https://animated-chainsaw-pjv6p66wpqr6f7rg7-3000.app.github.dev/api/tecnologias';
     listar(): Observable<Tecnologia[]> {
         return this.http.get<Tecnologia[]>(this.url);
     }
