@@ -281,6 +281,26 @@ Como rodar:
 A API sobe em http://localhost:3000. Teste com:
     curl -i http://localhost:3000/api/projetos
 
+### Aula 22: a API le do banco
+ 
+ Antes de subir a API, o MariaDB precisa estar de pe:
+    sudo service mariadb start
+    cd api-node
+    node server.js
+
+Rotas que leem do `dwii_db´:
+    curl -i http://localhost:3000/api/projetos
+    curl -i http://localhost:3000/api/projetos/5
+    curl -i http://localhost:3000/api/tecnologias
+
+### Aula 23: a API cria, altera e apaga
+
+A API em uso e a de  ´api-node/´. Ps arquivos ´api/*.php´ e ´conexao.php´ ficam   no repositorio como historico do 2o trimestre 
+
+    curl -i -X POST http://localhost:3000/api/projetos -H "Content-Type: application/json" -d '{"nome":"Projeto de teste 2","ano":2026}'
+    curl -i -X PUT http://localhost:3000/api/projetos/7 -H "Content-Type: application/json" -d '{"nome":"Projeto de Teste (editado)","ano":2026}'
+    curl -i -X DELETE http://localhost:3000/api/projetos/7
+
 ## Por que o acesso de dados no service e não no componente?
 
 ```text
@@ -418,17 +438,6 @@ Durante a atividade, consegui consolidar os seguintes conceitos:
 - `curl`;
 - Git e GitHub.
 
-### Aula 22: a API le do banco
- 
- Antes de subir a API, o MariaDB precisa estar de pe:
-    sudo service mariadb start
-    cd api-node
-    node server.js
-
-Rotas que leem do `dwii_db´:
-    curl -i http://localhost:3000/api/projetos
-    curl -i http://localhost:3000/api/projetos/5
-    curl -i http://localhost:3000/api/tecnologias
 
 ## ▶️ Executando a API
 

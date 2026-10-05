@@ -34,14 +34,14 @@ export class ProjetoService {
         projeto: Projeto
     ): Observable<{ id?: number; mensagem?: string }> {
         return this.http.put<{ id?: number; mensagem?: string }>(
-            `${this.url}?id=${id}`,
+            `${this.url}/${id}`,
             projeto
         );
     }
 
     excluir(id: number): Observable<void> {
         return this.http.delete<void>(
-            `${this.url}?id=${id}`
+            `${this.url}/${id}`
         );
     }
 }
