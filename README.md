@@ -2,7 +2,7 @@
 
 ## 📖 Descrição do Projeto
 
-Este projeto foi desenvolvido utilizando o framework Angular como parte das atividades do 2º trimestre. O objetivo é criar uma aplicação web moderna seguindo o conceito de **SPA (Single Page Application)**, onde a navegação acontece sem recarregar a página inteira, proporcionando uma experiência mais fluida ao usuário.
+Este projeto foi desenvolvido utilizando o framework **Angular** como parte das atividades do 2º trimestre. O objetivo é criar uma aplicação web moderna seguindo o conceito de **SPA (Single Page Application)**, onde a navegação acontece sem recarregar a página inteira, proporcionando uma experiência mais fluida ao usuário.
 
 Diferentemente do projeto desenvolvido anteriormente em PHP, onde cada página era gerada pelo servidor a cada requisição, o Angular executa a maior parte da lógica no navegador por meio de JavaScript e TypeScript, atualizando apenas os elementos necessários da interface.
 
@@ -77,11 +77,11 @@ A unidade básica de construção de uma aplicação Angular é o **componente**
 
 Exemplo:
 
-### app.ts
+### `app.ts`
 
 Responsável pela lógica da aplicação.
 
-### app.html
+### `app.html`
 
 Responsável pela interface exibida ao usuário.
 
@@ -95,7 +95,7 @@ Neste projeto, `title` é um **signal**, recurso moderno do Angular utilizado pa
 
 ---
 
-## 🌐 Funcionamento do ng serve
+## 🌐 Funcionamento do `ng serve`
 
 Ao executar:
 
@@ -126,7 +126,7 @@ O recurso de **Port Forwarding** cria uma conexão segura entre a porta do servi
 
 ---
 
-## 📦 Dependências e node_modules
+## 📦 Dependências e `node_modules`
 
 A pasta `node_modules` contém todas as bibliotecas utilizadas pelo projeto.
 
@@ -200,10 +200,10 @@ portfolioAngular/
 
 Cada pasta dentro de `app` representa um componente da aplicação:
 
-- **home/** → página inicial;
-- **sobre/** → informações pessoais e trajetória acadêmica;
-- **projetos/** → projetos desenvolvidos;
-- **contato/** → formas de contato.
+- **`home/`** → página inicial;
+- **`sobre/`** → informações pessoais e trajetória acadêmica;
+- **`projetos/`** → projetos desenvolvidos;
+- **`contato/`** → formas de contato.
 
 Essa divisão facilita a manutenção e reutilização dos componentes, seguindo a arquitetura baseada em componentes proposta pelo Angular.
 
@@ -269,329 +269,455 @@ Dessa forma, o usuário consegue visualizar facilmente em qual seção da aplica
 
 ---
 
-**### Aula 21: API em Node**
+# 🔌 API em Node.js
 
-Uma segunda versao da API, em JavaScript, na pasta `api-node/`. O contrato de `GET/api/projetos` e o mesmo do `api/projetos.php`.
+## Aula 21: API em Node
+
+Uma segunda versão da API, em JavaScript, na pasta `api-node/`. O contrato de `GET /api/projetos` é o mesmo do `api/projetos.php`.
 
 Para iniciar a API, entre na pasta `api-node/`:
 
-    cd api-node
+```bash
+cd api-node
+```
 
-Instale as dependencias:
+Instale as dependências:
 
-    npm install
+```bash
+npm install
+```
 
 Depois, ainda dentro da pasta `api-node/`, inicie o servidor:
 
-    node server.js
+```bash
+node server.js
+```
 
-A API sobe em [http://localhost:3000](http://localhost:3000).
+A API sobe em:
 
-**Importante:** o comando `node server.js` deve ser executado dentro da pasta `api-node/`.
+```text
+http://localhost:3000
+```
 
-Os testes com `curl` sao executados na **raiz do repositorio**, ou seja, fora da pasta `api-node/`.
+> **Importante:** o comando `node server.js` deve ser executado dentro da pasta `api-node/`.
 
-Na raiz do repositorio, teste com:
+Os testes com `curl` são executados na **raiz do repositório**, ou seja, fora da pasta `api-node/`.
 
-    curl -i http://localhost:3000/api/projetos
+Na raiz do repositório, teste com:
 
-**### Aula 22: a API le do banco**
+```bash
+curl -i http://localhost:3000/api/projetos
+```
 
-Antes de subir a API, o MariaDB precisa estar de pe:
+---
 
-    sudo service mariadb start
+## Aula 22: a API lê do banco
+
+Antes de subir a API, o MariaDB precisa estar de pé:
+
+```bash
+sudo service mariadb start
+```
 
 Depois, entre na pasta `api-node/` e inicie a API:
 
-    cd api-node
-    node server.js
+```bash
+cd api-node
+node server.js
+```
 
-Com a API em funcionamento, volte para a **raiz do repositorio** para executar os testes com `curl`.
+Com a API em funcionamento, volte para a **raiz do repositório** para executar os testes com `curl`.
 
 Rotas que leem do `dwii_db`:
 
-    curl -i http://localhost:3000/api/projetos
+```bash
+curl -i http://localhost:3000/api/projetos
+```
 
-    curl -i http://localhost:3000/api/projetos/5
+```bash
+curl -i http://localhost:3000/api/projetos/5
+```
 
-    curl -i http://localhost:3000/api/tecnologias
+```bash
+curl -i http://localhost:3000/api/tecnologias
+```
 
-**### Aula 23: a API cria, altera e apaga**
+---
 
-A API em uso e a de `api-node/`. Os arquivos `api/*.php` e `conexao.php` ficam no repositorio como historico do 2o trimestre.
+## Aula 23: a API cria, altera e apaga
+
+A API em uso é a de `api-node/`. Os arquivos `api/*.php` e `conexao.php` ficam no repositório como histórico do 2º trimestre.
 
 A API deve estar sendo executada dentro da pasta `api-node/`:
 
-    cd api-node
-    node server.js
+```bash
+cd api-node
+node server.js
+```
 
-Os comandos de teste abaixo devem ser executados na **raiz do repositorio**.
+Os comandos de teste abaixo devem ser executados na **raiz do repositório**.
 
-Para criar um projeto:
+### Criar um projeto
 
-    curl -i -X POST http://localhost:3000/api/projetos -H "Content-Type: application/json" -d '{"nome":"Projeto de teste 2","ano":2026}'
+```bash
+curl -i -X POST http://localhost:3000/api/projetos \
+-H "Content-Type: application/json" \
+-d '{"nome":"Projeto de teste 2","ano":2026}'
+```
 
-Para alterar um projeto:
+### Alterar um projeto
 
-    curl -i -X PUT http://localhost:3000/api/projetos/7 -H "Content-Type: application/json" -d '{"nome":"Projeto de Teste (editado)","ano":2026}'
+```bash
+curl -i -X PUT http://localhost:3000/api/projetos/7 \
+-H "Content-Type: application/json" \
+-d '{"nome":"Projeto de Teste (editado)","ano":2026}'
+```
 
-Para apagar um projeto:
+### Apagar um projeto
 
-    curl -i -X DELETE http://localhost:3000/api/projetos/7
+```bash
+curl -i -X DELETE http://localhost:3000/api/projetos/7
+```
 
-**### Aula 24: a tranca**
+---
+
+## Aula 24: a tranca
 
 Quem escreve precisa de um token. Antes do primeiro uso, crie a tabela e o dono:
 
-    sudo mariadb dwii_db < sql/usuarios.sql
+```bash
+sudo mariadb dwii_db < sql/usuarios.sql
+```
 
 O comando abaixo deve ser executado dentro da pasta `api-node/`:
 
-    cd api-node
-    npm install
-    node criar-usuario.js dono@portfolio.dev portfolio2026
+```bash
+cd api-node
+npm install
+node criar-usuario.js dono@portfolio.dev portfolio2026
+```
 
 Depois, inicie a API:
 
-    node server.js
+```bash
+node server.js
+```
+
+Com a API em funcionamento, os comandos de login e os testes das rotas devem ser executados na **raiz do repositório**.
+
+### Login correto
+
+```bash
+curl -i -X POST http://localhost:3000/api/login \
+-H "Content-Type: application/json" \
+-d '{"email":"dono@portfolio.dev","senha":"portfolio2026"}'
+```
+
+**Resposta:**
+
+```text
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 188
+ETag: W/"bc-reh8UI6nf1Juoni7WLbFBqASKy8"
+Date: Sun, 25 Oct 2026 19:55:38 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkb25vQHBvcnRmb2xpby5kZXYiLCJpYXQiOjE3OTI5NTgxMzgsImV4cCI6MTc5Mjk2ODkzOH0.xLL5DhUc6YKJj-XZ-NjEBgflJnql8r-3_MCrHEyJsEE"}
+```
+
+### Login com senha incorreta
+
+```bash
+curl -i -X POST http://localhost:3000/api/login \
+-H "Content-Type: application/json" \
+-d '{"email":"dono@portfolio.dev","senha":"portfolio2025"}'
+```
+
+**Resposta:**
+
+```text
+HTTP/1.1 401 Unauthorized
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 62
+ETag: W/"3e-7ig1MRwHlLP9az3HUIFuFrCIvuA"
+Date: Sun, 25 Oct 2026 19:56:15 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"erro":"Email ou senha inválidos. Confira suas credenciais"}
+```
+
+### Login com email inexistente
+
+```bash
+curl -i -X POST http://localhost:3000/api/login \
+-H "Content-Type: application/json" \
+-d '{"email":"ninguem@portfolio.dev","senha":"portfolio2026"}'
+```
+
+**Resposta:**
+
+```text
+HTTP/1.1 401 Unauthorized
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 62
+ETag: W/"3e-7ig1MRwHlLP9az3HUIFuFrCIvuA"
+Date: Sun, 25 Oct 2026 19:56:15 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"erro":"Email ou senha inválidos. Confira suas credenciais"}
+```
+
+### Login sem senha
+
+```bash
+curl -i -X POST http://localhost:3000/api/login \
+-H "Content-Type: application/json" \
+-d '{"email":"dono@portfolio.dev"}'
+```
+
+**Resposta:**
+
+```text
+HTTP/1.1 400 Bad Request
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 32
+ETag: W/"20-sqCMSDh77HwmN9gNyVfEQ10XtLs"
+Date: Sun, 25 Oct 2026 20:00:54 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"erro":"Informe email e senha"}
+```
 
-Com a API em funcionamento, os comandos de login e os testes das rotas devem ser executados na **raiz do repositorio**.
+O login retorna um token JWT. Esse token deve ser utilizado nas requisições que alteram os projetos.
 
-Login correto:
+### Criar um projeto
 
-    curl -i -X POST http://localhost:3000/api/login -H "Content-Type: application/json" -d '{"email":"dono@portfolio.dev","senha":"portfolio2026"}'
+```bash
+curl -i -X POST http://localhost:3000/api/projetos \
+-H "Authorization: Bearer $TOKEN" \
+-H "Content-Type: application/json" \
+-d '{"nome":"Projeto com tranca","ano":2026}'
+```
 
-Resposta:
+**Resposta:**
 
-    HTTP/1.1 200 OK
-    X-Powered-By: Express
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 188
-    ETag: W/"bc-reh8UI6nf1Juoni7WLbFBqASKy8"
-    Date: Sun, 25 Oct 2026 19:55:38 GMT
-    Connection: keep-alive
-    Keep-Alive: timeout=5
+```text
+HTTP/1.1 201 Created
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 8
 
-    {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkb25vQHBvcnRmb2xpby5kZXYiLCJpYXQiOjE3OTI5NTgxMzgsImV4cCI6MTc5Mjk2ODkzOH0.xLL5DhUc6YKJj-XZ-NjEBgflJnql8r-3_MCrHEyJsEE"}
+{"id":8}
+```
 
+### O mesmo POST sem o token
 
-Login com senha incorreta: 
-    
-    curl -i -X POST http://localhost:3000/api/login -H "Content-Type: application/json" -d '{"email":"dono@portfolio.dev","senha":"portfolio2025"}'
+```bash
+curl -i -X POST http://localhost:3000/api/projetos \
+-H "Content-Type: application/json" \
+-d '{"nome":"Qualquer um cria","ano":2026}'
+```
 
-Resposta: 
+**Resposta:**
 
-    HTTP/1.1 401 Unauthorized
-    X-Powered-By: Express
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 62
-    ETag: W/"3e-7ig1MRwHlLP9az3HUIFuFrCIvuA"
-    Date: Sun, 25 Oct 2026 19:56:15 GMT
-    Connection: keep-alive
-    Keep-Alive: timeout=5
+```text
+HTTP/1.1 401 Unauthorized
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 24
+
+{"erro":"Acesso não autorizado. Token de autenticação nao informado."}
+```
+
+### O mesmo POST com o token com o último caractere trocado
 
-    {"erro":"Email ou senha inválidos. Confira suas credenciais"}
+```bash
+curl -i -X POST http://localhost:3000/api/projetos \
+-H "Authorization: Bearer ${TOKEN%?}x" \
+-H "Content-Type: application/json" \
+-d '{"nome":"Qualquer um cria","ano":2026}'
+```
 
-Login com email inexistente:
+**Resposta:**
 
-    curl -i -X POST http://localhost:3000/api/login -H "Content-Type: application/json" -d '{"email":"ninguem@portfolio.dev","senha":"portfolio2026"}'
+```text
+HTTP/1.1 401 Unauthorized
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 37
+
+{"erro":"Token invalido ou expirado. Acesso nao autorizado"}
+```
+
+### Alterar um projeto
+
+```bash
+curl -i -X PUT http://localhost:3000/api/projetos/17 \
+-H "Authorization: Bearer $TOKEN" \
+-H "Content-Type: application/json" \
+-d '{"nome":"Projeto com tranca (editado)","ano":2026}'
+```
 
-Resposta:
+**Resposta:**
 
-    HTTP/1.1 401 Unauthorized
-    X-Powered-By: Express
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 62
-    ETag: W/"3e-7ig1MRwHlLP9az3HUIFuFrCIvuA"
-    Date: Sun, 25 Oct 2026 19:56:15 GMT
-    Connection: keep-alive
-    Keep-Alive: timeout=5
+```text
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 33
 
-    {"erro":"Email ou senha inválidos. Confira suas credenciais"}
+{"mensagem":"Projeto atualizado"}
+```
 
-Login sem senha:
+### Mesmo comando sem o token
 
-    curl -i -X POST http://localhost:3000/api/login -H "Content-Type: application/json" -d '{"email":"dono@portfolio.dev"}'
+```bash
+curl -i -X PUT http://localhost:3000/api/projetos/17 \
+-H "Content-Type: application/json" \
+-d '{"nome":"Qualquer um edita","ano":2026}'
+```
 
-Resposta:
-    HTTP/1.1 400 Bad Request
-    X-Powered-By: Express
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 32
-    ETag: W/"20-sqCMSDh77HwmN9gNyVfEQ10XtLs"
-    Date: Sun, 25 Oct 2026 20:00:54 GMT
-    Connection: keep-alive
-    Keep-Alive: timeout=5
+**Resposta:**
 
-    {"erro":"Informe email e senha"}
+```text
+HTTP/1.1 401 Unauthorized
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 24
 
+{"erro":"Acesso não autorizado. Token de autenticação nao informado."}
+```
 
+### Apagar um projeto
 
-O login retorna um token JWT. Esse token deve ser utilizado nas requisicoes que alteram os projetos.
+```bash
+curl -i -X DELETE http://localhost:3000/api/projetos/8 \
+-H "Authorization: Bearer $TOKEN"
+```
 
-**Criar um projeto:**
+**Resposta:**
 
-    curl -i -X POST http://localhost:3000/api/projetos -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"nome":"Projeto com tranca","ano":2026}'
+```text
+HTTP/1.1 204 No Content
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Date: Sun, 25 Oct 2026 20:15:58 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+```
 
-Resposta: 
+### Mesmo comando sem TOKEN
 
-    HTTP/1.1 201 Created
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 8
-    ​
-    {"id":8}
+```bash
+curl -i -X DELETE http://localhost:3000/api/projetos/17 \
+-H "Authorization"
+```
 
-**O mesmo post sem o token:**
+**Resposta:**
 
-    curl -i -X POST http://localhost:3000/api/projetos -H "Content-Type: application/json" -d '{"nome":"Qualquer um cria","ano":2026}'
+```text
+HTTP/1.1 401 Unauthorized
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 74
+ETag: W/"4a-nCyrS9xXSYZCWypg9v2GKs5WW+I"
+Date: Sun, 25 Oct 2026 20:17:33 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 
-Resposta:
+{"erro":"Acesso não autorizado. Token de autenticação nao informado. "}
+```
 
-    HTTP/1.1 401 Unauthorized
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 24
-    ​
-    {"erro":"Acesso não autorizado. Token de autenticação nao informado."}
+### ID que não existe
 
-**O mesmo post com o token com o último caractere trocado:**
+```bash
+curl -i -X DELETE http://localhost:3000/api/projetos/08 \
+-H "Authorization: Bearer $TOKEN"
+```
 
-    curl -i -X POST http://localhost:3000/api/projetos -H "Authorization: Bearer ${TOKEN%?}x" -H "Content-Type: application/json" -d '{"nome":"Qualquer um cria","ano":2026}'
+**Resposta:**
 
-Resposta:
+```text
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 33
+ETag: W/"21-KzJbE6j+laabV/sOTO7Xtcjmk8c"
+Date: Sun, 25 Oct 2026 20:18:13 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 
-    HTTP/1.1 401 Unauthorized
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 37
-    ​
-    {"erro":"Token invalido ou expirado. Acesso nao autorizado"}
+{"erro":"Projeto nao encontrado"}
+```
 
+---
 
-**Alterar um projeto:**
+## 📋 Resumo da execução
 
-    curl -i -X PUT http://localhost:3000/api/projetos/17 -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"nome":"Projeto com tranca (editado)","ano":2026}'
+A ordem para executar e testar a API é:
 
+1. Na raiz do repositório, iniciar o MariaDB:
 
-Resposta:
-
-    HTTP/1.1 200 OK
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 33
-    ​
-    {"mensagem":"Projeto atualizado"}
-
-**Mesmo comando sem o token:**
-
-    curl -i -X PUT http://localhost:3000/api/projetos/17 -H "Content-Type: application/json" -d '{"nome":"Qualquer um edita","ano":2026}'
-
-
-Resposta:
-
-    HTTP/1.1 401 Unauthorized
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 24
-    ​
-    {"erro":"Acesso não autorizado. Token de autenticação nao informado."}
-
-**Apagar um projeto:**
-
-    curl -i -X DELETE http://localhost:3000/api/projetos/8 -H "Authorization: Bearer $TOKEN"
-
-Resposta:
-
-    HTTP/1.1 204 No Content
-    X-Powered-By: Express
-    Access-Control-Allow-Origin: *
-    Date: Sun, 25 Oct 2026 20:15:58 GMT
-    Connection: keep-alive
-    Keep-Alive: timeout=5
-
-**Mesmo comando sem TOKEN:**
-
-    curl -i -X DELETE http://localhost:3000/api/projetos/17 -H "Authorization"
-
-Resposta:
-
-    HTTP/1.1 401 Unauthorized
-    X-Powered-By: Express
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 74
-    ETag: W/"4a-nCyrS9xXSYZCWypg9v2GKs5WW+I"
-    Date: Sun, 25 Oct 2026 20:17:33 GMT
-    Connection: keep-alive
-    Keep-Alive: timeout=5
-
-    {"erro":"Acesso não autorizado. Token de autenticação nao informado. "}
-
-
-**Id que nao existe:**
-
-    curl -i -X DELETE http://localhost:3000/api/projetos/08 -H "Authorization: Bearer $TOKEN"
-
-Resposta:
-
-    HTTP/1.1 404 Not Found
-    X-Powered-By: Express
-    Access-Control-Allow-Origin: *
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 33
-    ETag: W/"21-KzJbE6j+laabV/sOTO7Xtcjmk8c"
-    Date: Sun, 25 Oct 2026 20:18:13 GMT
-    Connection: keep-alive
-    Keep-Alive: timeout=5
-
-    {"erro":"Projeto nao encontrado"}
-
-
-
-**### Resumo da execucao**
-
-A ordem para executar e testar a API e:
-
-1. Na raiz do repositorio, iniciar o MariaDB:
-
-       sudo service mariadb start
+   ```bash
+   sudo service mariadb start
+   ```
 
 2. Entrar na pasta `api-node/`:
 
-       cd api-node
+   ```bash
+   cd api-node
+   ```
 
-3. Instalar as dependencias, se necessario:
+3. Instalar as dependências, se necessário:
 
-       npm install
+   ```bash
+   npm install
+   ```
 
 4. Iniciar a API:
 
-       node server.js
+   ```bash
+   node server.js
+   ```
 
 5. Manter o servidor Node.js rodando.
 
-6. Em outro terminal, voltar para a **raiz do repositorio**:
+6. Em outro terminal, voltar para a **raiz do repositório**:
 
-       cd ..
+   ```bash
+   cd ..
+   ```
 
 7. Executar os comandos `curl` para testar as rotas.
 
-Assim, `node server.js` e executado dentro de `api-node/`, enquanto os comandos `curl` usados para demonstrar o funcionamento da API sao executados a partir da raiz do repositorio.
+Assim, `node server.js` é executado dentro de `api-node/`, enquanto os comandos `curl` usados para demonstrar o funcionamento da API são executados a partir da raiz do repositório.
 
-**### Validade do token JWT**
+---
+
+## 🔐 Validade do token JWT
 
 O token JWT utilizado pela API possui validade de **3 horas**. Essa configuração foi definida no momento da criação do token, utilizando a propriedade `expiresIn`:
 
 ```js
 const token = jwt.sign(
-    { id: usuario.id, email: usuario.email },
-    SEGREDO,
-    { expiresIn: '3h' }
+  { id: usuario.id, email: usuario.email },
+  SEGREDO,
+  { expiresIn: '3h' }
 );
 ```
 
@@ -599,17 +725,41 @@ A escolha de 3 horas permite que o usuário utilize a API durante um período su
 
 Essa configuração também demonstra o uso de expiração de credenciais como medida de segurança na autenticação da API.
 
-## Resposta única de login
+---
 
-**Resposta única do login:** em caso de credenciais inválidas, tanto para email inexistente quanto para senha incorreta, a API retorna a mesma resposta `401 Unauthorized`: `{"erro":"Email ou senha inválidos. Confira suas credenciais."}`. Dessa forma, a API não informa qual dos dados está incorreto.
+## 🔑 Resposta única de login
 
-### Autenticação e rotas da API
+### Resposta única do login
 
-A API utiliza autenticação por token JWT nas operações que alteram os dados e nas rotas que precisam de acesso restrito. O token é gerado pela rota de login e deve ser enviado no cabeçalho `Authorization` no formato `Bearer TOKEN`.
+Em caso de credenciais inválidas, tanto para email inexistente quanto para senha incorreta, a API retorna a mesma resposta `401 Unauthorized`:
 
-A autenticação é centralizada em um único middleware chamado `autenticar`, que utiliza `jwt.verify()` para validar o token. As rotas protegidas utilizam esse middleware, sem repetir a verificação do token em cada rota.
+```json
+{
+  "erro": "Email ou senha inválidos. Confira suas credenciais."
+}
+```
 
-### Tabela de rotas
+Dessa forma, a API não informa qual dos dados está incorreto.
+
+---
+
+## 🔒 Autenticação e rotas da API
+
+A API utiliza autenticação por token JWT nas operações que alteram os dados e nas rotas que precisam de acesso restrito.
+
+O token é gerado pela rota de login e deve ser enviado no cabeçalho `Authorization` no formato:
+
+```text
+Bearer TOKEN
+```
+
+A autenticação é centralizada em um único middleware chamado `autenticar`, que utiliza `jwt.verify()` para validar o token.
+
+As rotas protegidas utilizam esse middleware, sem repetir a verificação do token em cada rota.
+
+---
+
+## 📋 Tabela de rotas
 
 | Rota | Verbo | Token |
 |---|---|---|
@@ -626,28 +776,36 @@ A autenticação é centralizada em um único middleware chamado `autenticar`, q
 | `/api/tecnologias/:id` | DELETE | Sim |
 | `/api/login` | POST | Não |
 
-Na rota `/api/projetos/todos`, o token é obrigatório e a consulta retorna todos os projetos, incluindo os que estão como `rascunho`. Já `/api/projetos` retorna somente os projetos com status `publicado`.
+Na rota `/api/projetos/todos`, o token é obrigatório e a consulta retorna todos os projetos, incluindo os que estão como `rascunho`.
 
-### O que a API ainda não faz
+Já `/api/projetos` retorna somente os projetos com status `publicado`.
 
-A API ainda não possui cadastro de usuários pela própria API, recuperação ou alteração de senha e diferentes níveis de permissão entre usuários. As rotas protegidas verificam se o token JWT é válido, mas não possuem diferentes níveis de acesso.
+---
+
+## 🚧 O que a API ainda não faz
+
+A API ainda não possui cadastro de usuários pela própria API, recuperação ou alteração de senha e diferentes níveis de permissão entre usuários.
+
+As rotas protegidas verificam se o token JWT é válido, mas não possuem diferentes níveis de acesso.
 
 Também não há, até o momento, paginação ou filtros nas listagens e nem uma documentação automática da API, como Swagger/OpenAPI.
 
+---
 
+## 🧠 Por que o acesso de dados no service e não no componente?
 
-## Por que o acesso de dados no service e não no componente?
-
-```text
 O acesso aos dados foi implementado nos services, e não diretamente nos componentes, seguindo as boas práticas do Angular.
 
 Essa abordagem separa as responsabilidades da aplicação: os componentes ficam responsáveis apenas pela interface e pela interação com o usuário, enquanto os services concentram toda a lógica de comunicação com a API.
-```
-## Autoavaliação
 
-**Conceito pretendido:** **A**
+---
 
-**Justificativa (cite o arquivo de cada critério):**
+# 🎯 Autoavaliação
+
+## Conceito pretendido: A
+
+### Justificativa (cite o arquivo de cada critério)
+
 - **Consumo da API (Projetos):** `projeto.service.ts` (requisição HTTP GET) e `projetos.ts` (consumo dos dados).
 - **Consumo da API (Catálogo):** `tecnologia.service.ts` (requisição HTTP GET) e `catalogo.ts`/`catalogo.html` (exibição das tecnologias utilizando `async` pipe).
 - **Botão "Ver no GitHub":** `projetos.html` utilizando property binding com `[href]="p.link_github"`.
@@ -657,18 +815,27 @@ Essa abordagem separa as responsabilidades da aplicação: os componentes ficam 
 - **Boas práticas:** toda a comunicação com a API foi implementada nos services, enquanto os componentes ficaram responsáveis apenas pela apresentação dos dados.
 - **Uso do `async` pipe:** `catalogo.html`, consumindo os dados sem utilizar `subscribe()`.
 
-## 🎯 Autoavaliação
+---
 
-**Conceito pretendido:** **A**
-**Justificativa (cite o arquivo/linha de cada criterio):**
-- **Form reativo + erro por campo: contato.html (mensagens com touched) + contato.ts (Validators): As mensagens que analisam erro por campo estão na linha 34 (nome), 50 (email) e 66 (mensagem) e usam form.validate e touched como parâmetro. Os validators estão no contato.ts da linha 21 a 25
-- **POST via service + tratamento: contato.service.ts (http.post) + contato.ts (subscribe next/error): http.post está na linha 17 do contato.service.ts. O return envia os dados do formulário para o PHP via POST e retorna a resposta para o componente tratar com subscribe(). Na linha 44 e 45 eu usei o subscribe e o next. A lógica indica que o subscribe acompanha a resposta da requisição, e next executa quando o envio dá certo, mostrando a mensagem, limpando o formulário e encerrando o estado de envio.**   
-- **Endpoint PHP (php://input, validacao, prepared, 201/400): api/contato.php: endpoint está na linha 15 do contato.php, prepared: 35, validação: 21 a 25, 201: 38 401: 28**
-- **Estados/robustez/UX (DUA): contato.html (labels for/id, sem cor unica) + contato.ts (estado enviando): Estados/robustez/UX (DUA): 28, 44 e 60. Estado enviando: linha 50 do contato.ts**
+# 🎯 Autoavaliação — Formulários
 
-## 🎯 Autoavaliação
+## Conceito pretendido: A
 
-**Conceito pretendido: A — Plena**
+### Justificativa (cite o arquivo/linha de cada critério)
+
+- **Form reativo + erro por campo:** `contato.html` (mensagens com `touched`) + `contato.ts` (Validators): as mensagens que analisam erro por campo estão na linha 34 (nome), 50 (email) e 66 (mensagem) e usam `form.validate` e `touched` como parâmetro. Os validators estão no `contato.ts` da linha 21 a 25.
+
+- **POST via service + tratamento:** `contato.service.ts` (`http.post`) + `contato.ts` (`subscribe next/error`): `http.post` está na linha 17 do `contato.service.ts`. O `return` envia os dados do formulário para o PHP via POST e retorna a resposta para o componente tratar com `subscribe()`. Na linha 44 e 45 eu usei o `subscribe` e o `next`. A lógica indica que o `subscribe` acompanha a resposta da requisição, e `next` executa quando o envio dá certo, mostrando a mensagem, limpando o formulário e encerrando o estado de envio.
+
+- **Endpoint PHP (`php://input`, validação, prepared, 201/400):** `api/contato.php`: endpoint está na linha 15 do `contato.php`, prepared: 35, validação: 21 a 25, 201: 38, 401: 28.
+
+- **Estados/robustez/UX (DUA):** `contato.html` (labels `for/id`, sem cor única) + `contato.ts` (estado enviando): Estados/robustez/UX: 28, 44 e 60. Estado enviando: linha 50 do `contato.ts`.
+
+---
+
+# 🎯 Autoavaliação — CRUD
+
+## Conceito pretendido: A — Plena
 
 Considero que alcancei o conceito **A**, pois implementei o CRUD completo da API, desenvolvi a área de gestão no Angular, tratei os principais erros e realizei testes das requisições. Também compreendi como frontend, service, API e banco de dados se relacionam.
 
@@ -744,7 +911,9 @@ Utilizei `label` associado aos campos do formulário, mensagens de erro em texto
 
 O projeto foi salvo no Git e enviado para o repositório com `git push`.
 
-### Conceitos que consolidei
+---
+
+## 📚 Conceitos que consolidei
 
 Durante a atividade, consegui consolidar os seguintes conceitos:
 
@@ -773,8 +942,9 @@ Durante a atividade, consegui consolidar os seguintes conceitos:
 - `curl`;
 - Git e GitHub.
 
+---
 
-## ▶️ Executando a API
+# ▶️ Executando a API
 
 Para iniciar a API, abra o terminal na raiz do projeto e execute o comando:
 
@@ -790,7 +960,7 @@ Antes de acessar os endpoints, o endereço do servidor será semelhante a:
 https://obscure-halibut-4j4rwrrvwvvqc75vg-8000.app.github.dev
 ```
 
-Para visualizar as APIs, adicione os respectivos caminhos ao final da URL:
+Para visualizar as APIs, adicione os respectivos caminhos ao final da URL.
 
 ### API de Projetos
 
@@ -806,8 +976,9 @@ https://obscure-halibut-4j4rwrrvwvvqc75vg-8000.app.github.dev/api/tecnologias.ph
 
 > **Observação:** o nome do domínio pode variar de acordo com cada sessão do GitHub Codespaces. Basta utilizar a URL fornecida pelo servidor e acrescentar `/api/projetos.php` ou `/api/tecnologias.php` ao final.
 
+---
 
-## ▶️ Como Executar o Projeto
+# ▶️ Como Executar o Projeto
 
 ### 1. Clonar o repositório
 
@@ -841,7 +1012,7 @@ http://localhost:4200
 
 ---
 
-## 🔄 Ambiente Reproduzível
+# 🔄 Ambiente Reproduzível
 
 Registrar as versões utilizadas é importante para garantir que outras pessoas consigam executar o projeto nas mesmas condições.
 
@@ -856,7 +1027,7 @@ node -v
 Versão utilizada:
 
 ```text
-vXX.XX.X
+v24.14.0
 ```
 
 ### npm
@@ -868,7 +1039,7 @@ npm -v
 Versão utilizada:
 
 ```text
-X.XX.X
+11.9.0
 ```
 
 ### Angular CLI
@@ -880,12 +1051,12 @@ ng version
 Versão utilizada:
 
 ```text
-Angular CLI: XX.X.X
+Angular CLI: 21.2.14
 ```
 
 ---
 
-## 👨‍💻 Autor
+# 👨‍💻 Autor
 
 Projeto desenvolvido como atividade prática de aprendizagem do framework Angular, explorando conceitos de SPA, componentes, Angular Router, `routerLink`, `routerLinkActive`, Angular CLI, Node.js, npm e Angular Material.
 
