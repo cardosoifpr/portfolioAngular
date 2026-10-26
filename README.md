@@ -667,6 +667,26 @@ Keep-Alive: timeout=5
 
 ---
 
+### Aula 25: o Portfolio em React
+
+O front novo nasce em `portfolio-rect/` (Vite + React), ao lado do Angular. Para rodar:
+
+```bash
+cd portfolio-react
+```
+```bash
+npm install
+```
+```bash
+npm run dev
+```
+
+```text
+A tela abre na porta 5173. Por enquanto os projetos sao fixos no `src/App.jsx`; a Aula 27 os traz da API.
+```
+
+
+
 ## 📋 Resumo da execução
 
 A ordem para executar e testar a API é:
