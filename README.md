@@ -394,7 +394,7 @@ O comando abaixo deve ser executado dentro da pasta `api-node/`:
 ```bash
 cd api-node
 npm install
-node criar-usuario.js dono@portfolio.dev portfolio2026
+node criar-usuario.js rafaela@gmail.com <senha>
 ```
 
 Depois, inicie a API:
@@ -410,7 +410,7 @@ Com a API em funcionamento, os comandos de login e os testes das rotas devem ser
 ```bash
 curl -i -X POST http://localhost:3000/api/login \
 -H "Content-Type: application/json" \
--d '{"email":"dono@portfolio.dev","senha":"portfolio2026"}'
+-d '{"email":"rafaela@gmail.com","senha":"<senha>"}'
 ```
 
 **Resposta:**
@@ -426,7 +426,7 @@ Date: Sun, 25 Oct 2026 19:55:38 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
 
-{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkb25vQHBvcnRmb2xpby5kZXYiLCJpYXQiOjE3OTI5NTgxMzgsImV4cCI6MTc5Mjk2ODkzOH0.xLL5DhUc6YKJj-XZ-NjEBgflJnql8r-3_MCrHEyJsEE"}
+{"token":"<token gerado no login>"}
 ```
 
 ### Login com senha incorreta
@@ -434,7 +434,7 @@ Keep-Alive: timeout=5
 ```bash
 curl -i -X POST http://localhost:3000/api/login \
 -H "Content-Type: application/json" \
--d '{"email":"dono@portfolio.dev","senha":"portfolio2025"}'
+-d '{"email":"rafaela@gmail.com","senha":"<senha>"}'
 ```
 
 **Resposta:**
@@ -458,7 +458,7 @@ Keep-Alive: timeout=5
 ```bash
 curl -i -X POST http://localhost:3000/api/login \
 -H "Content-Type: application/json" \
--d '{"email":"ninguem@portfolio.dev","senha":"portfolio2026"}'
+-d '{"email":"ninguem@portfolio.dev","senha":"<senha>"}'
 ```
 
 **Resposta:**
@@ -482,7 +482,7 @@ Keep-Alive: timeout=5
 ```bash
 curl -i -X POST http://localhost:3000/api/login \
 -H "Content-Type: application/json" \
--d '{"email":"dono@portfolio.dev"}'
+-d '{"email":"rafaela@gmail.com"}'
 ```
 
 **Resposta:**
@@ -560,6 +560,81 @@ Content-Type: application/json; charset=utf-8
 Content-Length: 37
 
 {"erro":"Token invalido ou expirado. Acesso nao autorizado"}
+```
+
+### Testes GET 
+
+**1. Login — gerar o token de autenticação**
+
+```bash
+curl -X POST http://localhost:3000/api/login \
+-H "Content-Type: application/json" \
+-d '{"email":"rafaela@gmail.com","senha":"<senha>"}'
+```
+
+```json
+{"token":"SEU_TOKEN"}
+```
+
+Depois de receber o token, salve-o na variável:
+
+```bash
+export TOKEN="COLE_AQUI_O_TOKEN"
+```
+
+Para visualizar o token:
+
+```bash
+echo "$TOKEN"
+```
+
+Resposta: 
+
+A saída será o token gerado no login, exibido como texto.
+
+**2. GET `/api/projetos/todos` — com token**
+
+Retorna todos os projetos cadastrados, inclusive os não publicados.
+
+```bash
+curl http://localhost:3000/api/projetos/todos \
+-H "Authorization: Bearer $TOKEN"
+```
+
+Resposta:
+
+```json
+[{"id":1,"nome":"Portfolio Pessoal","descricao":"Site de portfolio responsivo com PHP, PDO e MariaDB, painel admin e login.","tecnologias":"PHP, MariaDB, CSS, Git","link_github":"https://github.com/usuario/portfolio","status":"publicado","ano":2026},{"id":5,"nome":"API de Clima","descricao":"Microsservico que consome uma API publica e devolve a previsao em JSON.","tecnologias":"PHP, REST","link_github":"https://github.com/usuario/clima","status":"publicado","ano":2026},{"id":6,"nome":"Jogo da Velha (em construcao)","descricao":"Jogo da velha local - ainda em desenvolvimento.","tecnologias":"JavaScript, HTML","link_github":null,"status":"rascunho","ano":2026},{"id":12,"nome":"aaaaaaaaaaaaaaaa","descricao":"aaaaaaaaaaaaaa","tecnologias":"aaaaaaaaaaaaaa","link_github":"aaaaaaaaaaaaaaaa","status":"publicado","ano":2026},{"id":14,"nome":"Projeto de teste 2","descricao":"","tecnologias":"","link_github":"","status":"publicado","ano":2026},{"id":3,"nome":"App de Tarefas","descricao":"Lista de tarefas com categorias, prazos e filtro por status.","tecnologias":"JavaScript, HTML, CSS","link_github":"https://github.com/usuario/tarefas","status":"publicado","ano":2025},{"id":4,"nome":"Loja Virtual (prototipo)","descricao":"Catalogo de produtos com carrinho e checkout simulado.","tecnologias":"PHP, MariaDB, JavaScript","link_github":"https://github.com/usuario/loja","status":"publicado","ano":2024}]
+```
+
+**3. GET `/api/projetos/:id` — projeto por ID**
+
+Retorna os dados de um projeto publicado pelo seu ID.
+
+```bash
+curl http://localhost:3000/api/projetos/1
+```
+
+Resposta:
+
+```json
+{"id":1,"nome":"Portfolio Pessoal","descricao":"Site de portfolio responsivo com PHP, PDO e MariaDB, painel admin e login.","tecnologias":"PHP, MariaDB, CSS, Git","link_github":"https://github.com/usuario/portfolio","ano":2026}
+```
+
+**4. GET `/api/projetos/todos` — sem token**
+
+Verifica se a rota bloqueia acessos sem autenticação.
+
+```bash
+curl http://localhost:3000/api/projetos/todos
+```
+
+Resposta:
+
+```json
+{
+  "erro": "Acesso não autorizado. Token de autenticação nao informado."
+}
 ```
 
 ### Alterar um projeto
@@ -939,6 +1014,7 @@ O projeto foi salvo no Git e enviado para o repositório com `git push`.
 
 ---
 
+
 ## 📚 Conceitos que consolidei
 
 Durante a atividade, consegui consolidar os seguintes conceitos:
@@ -969,6 +1045,295 @@ Durante a atividade, consegui consolidar os seguintes conceitos:
 - Git e GitHub.
 
 ---
+
+# 🎯 Autoavaliação Geral do Projeto
+
+## Conceito pretendido: A — Plena
+
+Considero que alcancei o conceito **A**, pois desenvolvi diferentes partes do projeto, apliquei os conceitos trabalhados nas aulas e compreendi como frontend, backend, APIs e banco de dados se relacionam. Durante o desenvolvimento, trabalhei com Angular, Angular Material, React, PHP, Node.js, Express, MariaDB, SQL, PDO, TypeScript, JavaScript, HTML e CSS.
+
+### 1. Desenvolvimento Frontend — Angular
+
+Desenvolvi uma aplicação utilizando Angular, seguindo o conceito de **SPA (Single Page Application)**, em que a navegação acontece sem recarregar a página inteira.
+
+Trabalhei com:
+- Angular e TypeScript;
+- Angular CLI;
+- Angular Material e Material Design;
+- Node.js e npm;
+- componentes e separação entre lógica e interface;
+- interpolação;
+- signals;
+- Angular Router;
+- configuração de rotas;
+- diretivas `routerLink` e `routerLinkActive`;
+- property binding;
+- organização de componentes;
+- services e separação de responsabilidades;
+- atualização e apresentação de dados.
+
+Também utilizei `ng serve` para executar a aplicação, Live Reload para acompanhar alterações e Port Forwarding do GitHub Codespaces para visualizar o projeto no navegador.
+
+### 2. Consumo de APIs
+
+Implementei a comunicação entre o frontend Angular e as APIs por meio de services.
+
+Trabalhei com:
+- `HttpClient`;
+- requisições HTTP GET e POST;
+- Observable;
+- `subscribe()`;
+- pipe `async`;
+- consumo de dados de projetos e tecnologias;
+- centralização da URL da API;
+- tratamento de erros;
+- tratamento de listas vazias;
+- exibição condicional de informações;
+- separação entre comunicação com a API e apresentação dos dados.
+
+Utilizei os arquivos `projeto.service.ts`, `tecnologia.service.ts` e `api.ts` para organizar essa comunicação.
+
+### 3. Formulários
+
+Desenvolvi formulários com validação e tratamento das informações inseridas pelo usuário.
+
+Trabalhei com:
+- formulários reativos;
+- `FormGroup`;
+- Validators;
+- validação por campo;
+- propriedades `touched` e `form`;
+- `patchValue()`;
+- mensagens de erro;
+- envio de dados por POST;
+- `subscribe()`;
+- tratamento de sucesso e erro;
+- estado de envio;
+- limpeza dos campos após o envio;
+- labels associados aos campos por meio de `for` e `id`;
+- acessibilidade e experiência do usuário.
+
+Também implementei o envio do formulário de contato para o backend PHP, utilizando `http.post`.
+
+### 4. Backend com PHP
+
+Desenvolvi APIs utilizando PHP para realizar operações e disponibilizar dados ao frontend.
+
+Trabalhei com:
+- PHP;
+- endpoints;
+- `$_SERVER['REQUEST_METHOD']`;
+- `php://input`;
+- leitura de dados enviados em JSON;
+- validação de informações;
+- respostas HTTP;
+- códigos de status;
+- PDO;
+- conexão com banco de dados;
+- consultas SQL;
+- `prepare()` e `execute()`;
+- SQL parametrizado;
+- prevenção de SQL Injection;
+- tratamento de erros;
+- API de projetos;
+- API de tecnologias;
+- endpoint de contato.
+
+### 5. Banco de Dados
+
+Utilizei MariaDB e SQL para armazenar e consultar os dados do projeto.
+
+Trabalhei com:
+- MariaDB;
+- banco de dados `dwii_db`;
+- tabelas;
+- consultas SQL;
+- leitura e escrita de dados;
+- operações de inserção, atualização e exclusão;
+- integração entre banco de dados e backend;
+- prepared statements;
+- parâmetros nas consultas;
+- proteção contra SQL Injection.
+
+### 6. API REST e CRUD
+
+Implementei operações de CRUD para administrar os projetos.
+
+Trabalhei com os métodos HTTP:
+
+- **GET:** consultar e listar projetos;
+- **POST:** cadastrar novos projetos;
+- **PUT:** atualizar projetos existentes;
+- **DELETE:** excluir projetos.
+
+Também compreendi e utilizei códigos de status HTTP:
+- `200 OK`;
+- `201 Created`;
+- `204 No Content`;
+- `400 Bad Request`;
+- `401 Unauthorized`;
+- `404 Not Found`;
+- `405 Method Not Allowed`.
+
+Implementei validações, tratamento de registros inexistentes e testes das respostas da API.
+
+### 7. Tela de Gestão e Atualização de Dados
+
+Desenvolvi uma área de gestão no Angular para administrar os projetos.
+
+A tela permite:
+- adicionar projetos;
+- editar projetos;
+- excluir projetos;
+- visualizar projetos cadastrados;
+- validar os campos;
+- confirmar antes de excluir;
+- utilizar o `ProjetoService` para realizar requisições.
+
+Também implementei atualização da lista sem precisar recarregar a página com F5, utilizando atualização do array local e `filter()` para remover projetos após a exclusão.
+
+Compreendi a diferença entre atualizar os dados localmente e buscar novamente as informações na API.
+
+### 8. CORS e Comunicação HTTP
+
+Trabalhei com CORS e compreendi o funcionamento do método `OPTIONS` e das requisições de pré-voo (preflight).
+
+Também utilizei:
+- cabeçalhos HTTP;
+- métodos HTTP;
+- requisições entre origens diferentes;
+- respostas do servidor;
+- códigos de status;
+- análise das requisições pela aba Network do DevTools.
+
+### 9. API com Node.js e Express
+
+Desenvolvi uma segunda versão da API utilizando JavaScript, Node.js e Express, mantendo o contrato da API anterior.
+
+Trabalhei com:
+- Node.js;
+- Express;
+- JavaScript;
+- npm;
+- dependências e `package.json`;
+- rotas;
+- middleware;
+- integração com MariaDB;
+- operações CRUD;
+- respostas JSON;
+- métodos HTTP;
+- testes com `curl`.
+
+Implementei rotas para projetos e tecnologias, incluindo consultas por ID e operações de criação, alteração e exclusão.
+
+### 10. Autenticação e Segurança
+
+Implementei autenticação utilizando JWT para proteger as operações que modificam os dados e as rotas de acesso restrito.
+
+Trabalhei com:
+- rota de login;
+- JWT (JSON Web Token);
+- geração de tokens;
+- `jwt.sign()`;
+- `jwt.verify()`;
+- middleware `autenticar`;
+- cabeçalho `Authorization`;
+- formato `Bearer`;
+- validação de credenciais;
+- bcrypt;
+- hash de senhas;
+- `bcrypt.hash()`;
+- `bcrypt.compare()`;
+- expiração de token;
+- validade de três horas;
+- respostas `401 Unauthorized`;
+- respostas para token ausente, inválido ou expirado;
+- proteção de rotas;
+- resposta única para email ou senha inválidos.
+
+Também testei o acesso com token válido, sem token e com token inválido.
+
+### 11. Desenvolvimento com React e Vite
+
+Iniciei uma nova versão do frontend utilizando React e Vite.
+
+Trabalhei com:
+- React;
+- JSX;
+- componentes;
+- importação e exportação de componentes;
+- propriedades (props);
+- renderização de listas com `map()`;
+- renderização condicional;
+- gerenciamento de estado com `useState`;
+- organização dos projetos em arquivos separados;
+- formulários;
+- componentes reutilizáveis;
+- execução do ambiente com `npm run dev`.
+
+Também compreendi a separação entre os componentes e os dados utilizados para exibir os projetos.
+
+### 12. Testes, Depuração e Validação
+
+Realizei testes para verificar o funcionamento das aplicações e APIs.
+
+Utilizei:
+- `curl`;
+- DevTools;
+- aba Network;
+- testes de métodos HTTP;
+- análise de códigos de status;
+- verificação de respostas JSON;
+- testes de autenticação;
+- testes de rotas protegidas;
+- validação de dados;
+- identificação e correção de erros.
+
+### 13. Git, GitHub e Ambiente de Desenvolvimento
+
+Também trabalhei com ferramentas de organização, execução e publicação do projeto.
+
+Utilizei:
+- Git;
+- GitHub;
+- GitHub Codespaces;
+- Git clone;
+- `git push`;
+- `.gitignore`;
+- `node_modules`;
+- `dist`;
+- `.angular`;
+- `package.json`;
+- `package-lock.json`;
+- npm install;
+- Port Forwarding;
+- servidores locais;
+- organização de pastas e arquivos;
+- documentação em Markdown;
+- registro de versões do Node.js, npm e Angular CLI.
+
+### 14. Responsividade, Acessibilidade e Experiência do Usuário
+
+Durante o desenvolvimento, também considerei:
+- responsividade;
+- acessibilidade;
+- navegação pelo teclado;
+- labels associados aos campos;
+- mensagens de erro em texto;
+- estados de carregamento;
+- tratamento de listas vazias;
+- confirmação antes de excluir;
+- atualização da interface;
+- organização visual;
+- experiência de navegação.
+
+### Justificativa Final
+
+Considero que alcancei o conceito **A — Plena**, pois consegui aplicar os conteúdos estudados em diferentes tecnologias e etapas do desenvolvimento web. Desenvolvi interfaces, componentes, formulários, APIs, operações CRUD, integração com banco de dados, autenticação e testes.
+
+Além de implementar as funcionalidades, procurei compreender a responsabilidade de cada parte do sistema, a comunicação entre frontend e backend, a segurança das rotas e a importância da organização e documentação do código.
+
+O projeto permitiu consolidar conhecimentos de desenvolvimento frontend e backend, banco de dados, integração de sistemas, segurança, testes e versionamento, demonstrando minha evolução durante as atividades.
 
 # ▶️ Executando a API
 
