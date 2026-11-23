@@ -13,6 +13,10 @@ app.use(cors());
 app.use(express.json());
 
 
+app.get('/', (req, res) => {
+    res.send('API do Portfólio funcionando!');
+});
+
 function autenticar(req, res, next) {
     const cabecalho = req.headers.authorization ?? '';
     const token = cabecalho.replace('Bearer ', '');
