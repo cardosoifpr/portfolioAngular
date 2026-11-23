@@ -768,6 +768,21 @@ O formulario de contato (`src/Contato.jsx`) guarda o que a pessoa digita no esta
 Ele ainda nao envia nada: avisa e limpa os campos. O envio de verdade chega com a API.
 
 
+### Aula 27: os projetos vêm da API
+
+O front busca os projetos e o catalogo na API em Node, com `fetch` dentro de um `useEffect`.
+O endereço da API fica em `src/api.js`. O arquivo `src/projetos.js` saiu: os dados moram no banco.
+
+Para a tela mostrar os dados, a API precisa estar de pé, com a porta 3000 em Public:
+
+```bash
+sudo service mariadb start
+cd api-node
+node server.js
+```
+
+
+
 ## 📋 Resumo da execução
 
 A ordem para executar e testar a API é:

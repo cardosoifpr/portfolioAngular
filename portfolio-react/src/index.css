@@ -1,83 +1,317 @@
-/* Portfólio em React - estilos globais (Aula 25). Um arquivo só; a Aula 30 cuida do acabamento. */
 
+/* =================================
+   PORTFÓLIO REACT - ESTILO GLOBAL
+================================= */
+
+/* Configurações gerais */
 * {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f6fa;
-  color: #1f2937;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f3f5fb;
+  color: #253047;
+  line-height: 1.6;
 }
 
+/* =================================
+   CABEÇALHO
+================================= */
+
 header {
-  background-color: #3b579d;
+  background: linear-gradient(135deg, #263f7a, #4969b5);
   color: #ffffff;
-  padding: 12px 24px;
+  padding: 22px 8%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 15px rgba(25, 45, 90, 0.18);
 }
 
 header h1 {
   margin: 0;
-  font-size: 20px;
-  flex: 1;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+nav {
+  display: flex;
+  gap: 25px;
 }
 
 nav a {
   color: #ffffff;
-  margin-left: 16px;
   text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: #c8d8ff;
+  transform: translateY(-2px);
 }
 
+/* =================================
+   CONTEÚDO PRINCIPAL
+================================= */
+
 main {
-  max-width: 900px;
-  margin: 24px auto;
-  padding: 0 16px;
+  max-width: 1100px;
+  margin: 45px auto;
+  padding: 0 24px;
 }
+
+main h2 {
+  color: #263f7a;
+  font-size: 27px;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #dce5fa;
+}
+
+/* =================================
+   CARDS DE PROJETOS
+================================= */
 
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
+  gap: 24px;
 }
 
 .card {
-  background-color: #ffffff;
-  border: 1px solid #d9dee8;
-  border-radius: 12px;
-  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #e3e8f2;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 5px 18px rgba(40, 60, 100, 0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(40, 60, 100, 0.13);
 }
 
 .card h3 {
-  margin: 0 0 4px;
+  color: #263f7a;
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+
+.card p {
+  color: #596579;
+  margin: 8px 0;
 }
 
 .card .meta {
-  margin: 8px 0 0;
-  color: #6b7280;
+  margin-top: 14px;
+  color: #8290a5;
   font-size: 14px;
 }
 
 .card a {
+  display: inline-block;
+  margin-top: 15px;
   color: #3b579d;
-  font-weight: bold;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
+.card a:hover {
+  color: #1c3470;
+  text-decoration: underline;
+}
+
+/* =================================
+   CATÁLOGO DE TECNOLOGIAS
+================================= */
+
+.catalogo {
+  margin-top: 55px;
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid #e3e8f2;
+  box-shadow: 0 5px 18px rgba(40, 60, 100, 0.06);
+}
+
+.catalogo h2 {
+  margin-top: 0;
+}
+
+.catalogo ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.catalogo li {
+  background: #f1f5ff;
+  border-left: 4px solid #4969b5;
+  padding: 13px 16px;
+  border-radius: 8px;
+  color: #34466d;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.catalogo li:hover {
+  background: #e4ecff;
+  transform: translateX(4px);
+}
+
+/* =================================
+   FORMULÁRIO DE CONTATO
+================================= */
+
+.contato {
+  margin-top: 55px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #e3e8f2;
+  box-shadow: 0 5px 18px rgba(40, 60, 100, 0.06);
+}
+
+.contato h2 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 18px;
+  font-weight: 600;
+  color: #34466d;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  margin-top: 7px;
+  padding: 12px 14px;
+  border: 1px solid #d9e0ed;
+  border-radius: 9px;
+  font: inherit;
+  color: #253047;
+  background: #fafbfe;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #4969b5;
+  box-shadow: 0 0 0 3px rgba(73, 105, 181, 0.13);
+  background: #ffffff;
+}
+
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+/* Botões */
+
+button {
+  background: linear-gradient(135deg, #3b579d, #4969b5);
+  color: #ffffff;
+  border: none;
+  border-radius: 9px;
+  padding: 12px 24px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #263f7a;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(38, 63, 122, 0.2);
+}
+
+/* Mensagens */
+
+.aviso {
+  color: #21834a;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.erro {
+  color: #dc3545;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+/* =================================
+   RODAPÉ
+================================= */
+
 footer {
+  background: #263f7a;
+  color: #dce5fa;
   text-align: center;
-  color: #6b7280;
-  padding: 24px;
+  padding: 28px 20px;
+  margin-top: 65px;
   font-size: 14px;
 }
 
-.contato { margin-top: 32px; }
-label { display: block; margin: 0 0 12px; font-weight: bold;}
-input, textarea {display: block; width: 100%; margin-top: 4px; padding: 8px; border: 1px solid #d9dee8; border-radius: 8px; font: inherit; }
-button { background-color: #3b579d; color: #ffffff; border: 0; border-radius: 8px; padding: 10px 20px; font: inherit; cursor: pointer; }
-.aviso { color: #2e7d32; font-weight: bold; }
+footer p {
+  margin: 0;
+}
+
+/* =================================
+   RESPONSIVIDADE
+================================= */
+
+@media (max-width: 650px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 22px;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  main {
+    margin: 28px auto;
+    padding: 0 16px;
+  }
+
+  main h2 {
+    font-size: 23px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .catalogo,
+  .contato {
+    padding: 20px;
+  }
+
+  .catalogo ul {
+    grid-template-columns: 1fr;
+  }
+}
